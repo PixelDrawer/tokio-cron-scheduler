@@ -1,18 +1,22 @@
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct CronJob {
     pub schedule: String,
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct NonCronJob {
     pub repeating: bool,
     pub repeated_every: u64,
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Uuid {
     pub id1: u64,
     pub id2: u64,
 }
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct JobStoredData {
     pub id: ::core::option::Option<Uuid>,
     pub last_updated: ::core::option::Option<u64>,
@@ -30,6 +34,7 @@ pub struct JobStoredData {
 /// Nested message and enum types in `JobStoredData`.
 pub mod job_stored_data {
     #[derive(Clone, PartialEq, Eq, Hash, Debug)]
+    #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
     #[repr(i32)]
     pub enum Job {
         CronJob(super::CronJob),
@@ -37,22 +42,26 @@ pub mod job_stored_data {
     }
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct JobIdAndNotification {
     pub job_id: ::core::option::Option<Uuid>,
     pub notification_id: ::core::option::Option<Uuid>,
 }
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct NotificationData {
     pub job_id: ::core::option::Option<JobIdAndNotification>,
     pub job_states: Vec<i32>,
     pub extra: Vec<u8>,
 }
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct NotificationIdAndState {
     pub notification_id: ::core::option::Option<Uuid>,
     pub job_state: i32,
 }
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct JobAndNextTick {
     pub id: ::core::option::Option<Uuid>,
     pub job_type: i32,
@@ -60,20 +69,24 @@ pub struct JobAndNextTick {
     pub last_tick: ::core::option::Option<u64>,
 }
 #[derive(Clone, PartialEq, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct ListOfUuids {
     pub uuids: Vec<Uuid>,
 }
 #[derive(Clone, PartialEq, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct JobAndNotifications {
     pub job_id: ::core::option::Option<Uuid>,
     pub notification_ids: Vec<Uuid>,
 }
 #[derive(Clone, PartialEq, Debug)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct ListOfJobsAndNotifications {
     pub job_and_notifications: Vec<JobAndNotifications>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, FromPrimitive, ToPrimitive)]
 #[repr(i32)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum JobState {
     Stop = 0,
     Scheduled = 1,
@@ -109,6 +122,7 @@ impl JobState {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, FromPrimitive, ToPrimitive)]
 #[repr(i32)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum JobType {
     Cron = 0,
     Repeated = 1,
